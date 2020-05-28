@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,7 +25,6 @@ SECRET_KEY = '8thvxy3bq#l@-d&=n2mzmzddy0#wo5=4h^89)l)fp)aj&ipvc$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -32,12 +32,17 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
+    'listings.apps.ListingsConfig',
+    'realtors.apps.RealtorsConfig',
+    'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
@@ -76,8 +81,11 @@ WSGI_APPLICATION = 'yv_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'yv_db',
+        'USER': 'postgres',
+        'PASSWORD': 'pushkin',
+        'HOST': 'localhost'
     }
 }
 
@@ -119,6 +127,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATICFILES_DIR = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'yv_project/static')
 ]
+
+# Media Folder Setting
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'error'
+}
+
+# Email CONFIG
+EMAIL_HOST = 'smtp.rambler.ru'
+EMAIL_PORT = 567
+EMAIL_HOST_USER = 'greetingrush@rambler.ru'
+EMAIL_HOST_PASSWORD = 'vershkov7733!'
+EMAIL_USE_TSL = True
