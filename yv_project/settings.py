@@ -144,5 +144,5 @@ MESSAGE_TAGS = {
 EMAIL_HOST = 'smtp.rambler.ru'
 EMAIL_PORT = 567
 EMAIL_HOST_USER = 'greetingrush@rambler.ru'
-EMAIL_HOST_PASSWORD = 'vershkov7733!'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TSL = True
